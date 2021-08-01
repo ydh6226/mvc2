@@ -23,9 +23,9 @@ public class MemberRepository {
         return store.get(id);
     }
 
-    public Optional<Member> findByLoginId(String loginId) {
+    public Optional<Member> findByUsername(String loginId) {
         return findAll().stream()
-                .filter(m -> m.getLoginId().equals(loginId))
+                .filter(m -> m.getUsername().equals(loginId))
                 .findFirst();
     }
 

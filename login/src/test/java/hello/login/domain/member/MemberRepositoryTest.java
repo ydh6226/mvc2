@@ -4,9 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class MemberRepositoryTest {
 
@@ -23,8 +20,8 @@ class MemberRepositoryTest {
         List<Member> members = memberRepository.findAll();
         Optional<Member> findMember = members.stream()
                 .filter(member -> {
-                    System.out.println(member.getLoginId());
-                    return member.getLoginId().equals("user0");
+                    System.out.println(member.getUsername());
+                    return member.getUsername().equals("user0");
                 })
                 .findAny();
 

@@ -10,7 +10,7 @@ public class Member {
     private Long id;
 
     @NotEmpty
-    private String loginId;
+    private String username;
 
     @NotEmpty
     private String name;
@@ -18,8 +18,8 @@ public class Member {
     @NotEmpty
     private String password;
 
-    public Member(String loginId, String name, String password) {
-        this.loginId = loginId;
+    public Member(String username, String name, String password) {
+        this.username = username;
         this.name = name;
         this.password = password;
     }
