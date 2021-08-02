@@ -9,6 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @Slf4j
@@ -24,7 +26,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid LoginForm form, BindingResult result) {
+    public String login(@Valid LoginForm form, BindingResult result, HttpServletResponse response) {
         if (result.hasErrors()) {
             return "login/loginForm";
         }
@@ -35,7 +37,21 @@ public class LoginController {
             return "login/loginForm";
         }
 
-        // TODO: [2021/08/02 양동혁] 로그인 성공처리
+        //쿠키에 시간 정보를 주지 않으면 세션 쿠기 (브라우저 종료시 모두 종료) cf. 영속쿠기: 만료 날짜를 입력하면 해당 날짜까지 유지
+        Cookie idCookie = new Cookie("memberId", String.valueOf(loginMember.getId()));
+        response.addCookie(idCookie);
         return "redirect:/";
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpServletResponse response) {
+        expireCookie(response, "memberId");
+        return "redirect:/";
+    }
+
+    private void expireCookie(HttpServletResponse response, String cookieName) {
+        Cookie cookie = new Cookie(cookieName, null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
     }
 }

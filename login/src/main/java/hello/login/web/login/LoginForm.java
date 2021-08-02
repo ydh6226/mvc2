@@ -10,5 +10,6 @@ public class LoginForm {
     @NotEmpty
     private String username;
 
-    @NotEmpty String password;
+    @NotEmpty
+    String password;
 }
