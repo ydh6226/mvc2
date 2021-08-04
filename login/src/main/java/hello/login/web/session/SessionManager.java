@@ -40,8 +40,11 @@ public class SessionManager {
      */
     public Object getSession(HttpServletRequest request) {
         Optional<Cookie> optionalCookie = findCookie(request, SESSION_COOKIE_NAME);
-        return optionalCookie.<Object>map(Cookie::getValue)
-                .orElse(null);
+        if (optionalCookie.isEmpty()) {
+            return null;
+        }
+        Cookie cookie = optionalCookie.get();
+        return sessionStore.get(cookie.getValue());
     }
 
     /**
