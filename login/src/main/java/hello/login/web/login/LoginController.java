@@ -98,7 +98,7 @@ public class LoginController {
             return "login/loginForm";
         }
 
-        //세션이 있으면 있는 세션 반환, 앖으면 신규 세션을 생성
+        //세션이 있으면 있는 세션 반환, 없으면 신규 세션을 생성
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
 
