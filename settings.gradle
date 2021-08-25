@@ -1,4 +1,5 @@
 rootProject.name = 'mvc2'
 include 'login'
 include 'exception'
+include 'file'
 
