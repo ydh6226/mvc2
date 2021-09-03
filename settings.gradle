@@ -3,4 +3,5 @@ include 'login'
 include 'exception'
 include 'file'
 include 'typeconverter'
+include 'study'
 
